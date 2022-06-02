@@ -33,6 +33,6 @@
         android:background="@android:color/transparent"
         android:gravity="end"
         android:src="@android:drawable/btn_dialog"
-        />
+        android:contentDescription="@string/todo" />
 
 </RelativeLayout>

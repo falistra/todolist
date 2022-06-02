@@ -9,7 +9,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.*
-// import com.google.firebase.database.core.view.View
 
 class MainActivity : AppCompatActivity(), UpdateAndDelete {
 
@@ -23,15 +22,15 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
         setContentView(R.layout.activity_main)
 
         val fab = findViewById<android.view.View>(R.id.fab) as FloatingActionButton
-        listViewItem = findViewById<ListView>(R.id.item_listView)
+        listViewItem = findViewById(R.id.item_listView)
 
         database = FirebaseDatabase.getInstance().reference
 
         fab.setOnClickListener {
             val alertDialog = AlertDialog.Builder(this)
             val textEditText = EditText(this)
-            alertDialog.setMessage("Add TODO Item")
-            alertDialog.setTitle("Enter TODO Item")
+            alertDialog.setMessage("")
+            alertDialog.setTitle("Add TODO Item")
             alertDialog.setView(textEditText)
             alertDialog.setPositiveButton("Add") { dialog, _ ->
                 val todoItemData = ToDoModel.createList()
@@ -47,7 +46,7 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
             alertDialog.show()
         }
 
-        toDOList = mutableListOf<ToDoModel>()
+        toDOList = mutableListOf()
 
         adapter = ToDoAdapter(this,toDOList!!)
         listViewItem!!.adapter = adapter
@@ -73,7 +72,7 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
             while (itemsIterator.hasNext()) {
                 val currentItem = itemsIterator.next()
                 val toDoItemData = ToDoModel.createList()
-                val map = currentItem.value as HashMap<String,Any>
+                val map = currentItem.value as HashMap<*, *>
 
                 toDoItemData.UID = currentItem.key
                 toDoItemData.done = map["done"] as Boolean?

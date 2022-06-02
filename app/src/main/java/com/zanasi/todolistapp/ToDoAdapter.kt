@@ -17,7 +17,7 @@ class ToDoAdapter (context: Context,toDoList:MutableList<ToDoModel>) : BaseAdapt
     }
 
     override fun getItem(position: Int): Any {
-        return itemList.get(position)
+        return itemList[position]
     }
 
     override fun getItemId(position: Int): Long {
@@ -25,9 +25,9 @@ class ToDoAdapter (context: Context,toDoList:MutableList<ToDoModel>) : BaseAdapt
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        val UID : String = itemList.get(position).UID as String
-        val itemTextData = itemList.get(position).itemDataText as String
-        val done : Boolean = itemList.get(position).done as Boolean
+        val UID : String = itemList[position].UID as String
+        val itemTextData = itemList[position].itemDataText as String
+        val done : Boolean = itemList[position].done as Boolean
 
         val view : View
         val viewHolder : ListViewHolder
