@@ -1,13 +1,15 @@
 package com.zanasi.todolistapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+
+import android.widget.Button
 // import android.widget.Adapter
 // import android.widget.EditText
 import android.widget.ListView
 import android.widget.Toast
 // import androidx.appcompat.app.AlertDialog
-// import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.*
 
 class MainActivity : AppCompatActivity(), UpdateAndDelete {
@@ -47,6 +49,13 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
         }
         */
 
+        val addBtn : Button = findViewById(R.id.addItem)
+        addBtn.setOnClickListener {
+            val intent = Intent(this, ItemInsert::class.java).apply {
+            }
+            startActivity(intent)
+        }
+
         toDOList = mutableListOf()
 
         adapter = ToDoAdapter(this,toDOList!!)
@@ -64,6 +73,7 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
         })
 
     }
+
 
     private fun addItemToList (snapshot: DataSnapshot) {
         val items = snapshot.children.iterator()
