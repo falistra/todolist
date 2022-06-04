@@ -3,11 +3,11 @@ package com.zanasi.todolistapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 // import android.widget.Adapter
-import android.widget.EditText
+// import android.widget.EditText
 import android.widget.ListView
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+// import androidx.appcompat.app.AlertDialog
+// import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.*
 
 class MainActivity : AppCompatActivity(), UpdateAndDelete {
@@ -21,11 +21,11 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val fab = findViewById<android.view.View>(R.id.fab) as FloatingActionButton
+        // val fab = findViewById<android.view.View>(R.id.fab) as FloatingActionButton
         listViewItem = findViewById(R.id.item_listView)
 
         database = FirebaseDatabase.getInstance().reference
-
+/*
         fab.setOnClickListener {
             val alertDialog = AlertDialog.Builder(this)
             val textEditText = EditText(this)
@@ -45,6 +45,7 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
 
             alertDialog.show()
         }
+        */
 
         toDOList = mutableListOf()
 

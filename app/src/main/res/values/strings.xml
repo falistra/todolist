@@ -1,5 +1,44 @@
 <resources>
-    <string name="app_name">ToDoListApp</string>
+    <string name="app_name">So many things to do &#8230;</string>
     <string name="text">text</string>
     <string name="todo">TODO</string>
+    <string name="todo2">TODO2</string>
+    <string name="addItem">Add item</string>
+    <string name="writeItem">Write</string>
+    <string name="add">Add</string>
+    <string name="itemSaved">Added</string>
+    <string name="itemDeleted">Item deleted</string>
+
+    <string name="what">what</string>
+    <string name="what_hint">what</string>
+
+    <string name="who">who</string>
+    <string name="who_hint">who</string>
+
+    <string name="when">when</string>
+    <string name="when_hint">when</string>
+
+    <string name="when_time">when_time</string>
+    <string name="when_time_hint">when_time</string>
+
+    <string name="where">where</string>
+    <string name="where_hint">where</string>
+
+    <string name="why">why</string>
+    <string name="why_hint">why</string>
+
+    <string name="button">Add new item</string>
+    <string name="name">Name</string>
+
+    <string name="messages_header">messages_header</string>
+    <string name="signature_title">signature_title</string>
+    <string name="reply_title">reply_title</string>
+    <string name="sync_header">sync_header</string>
+    <string name="sync_title">sync_title</string>
+    <string name="attachment_summary_off">attachment_summary_off</string>
+    <string name="attachment_summary_on">attachment_summary_on</string>
+    <string name="attachment_title">attachment_title</string>
+
+
+
 </resources>
