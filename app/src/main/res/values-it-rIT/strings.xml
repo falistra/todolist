@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Così tante cose da fare &#8230;</string>
+    <string name="text">text</string>
+    <string name="todo">TODO</string>
+    <string name="todo2">TODO2</string>
+    <string name="addItem">Aggiungi Elemento</string>
+    <string name="writeItem">Scrivi</string>
+    <string name="add">Aggiungi</string>
+    <string name="itemSaved">Aggiunto</string>
+    <string name="itemDeleted">Elemento cancellato</string>
+
+    <string name="what">cosa</string>
+    <string name="what_hint">cosa</string>
+
+    <string name="who">chi</string>
+    <string name="who_hint">chi</string>
+
+    <string name="when">dove</string>
+    <string name="when_hint">dove</string>
+
+    <string name="where">quando</string>
+    <string name="where_hint">quando</string>
+
+    <string name="when_time">quando_time</string>
+    <string name="when_time_hint">quando_time</string>
+
+    <string name="why">perché</string>
+    <string name="why_hint">perché</string>
+
+    <string name="button">Aggiungi nuova attività</string>
+    <string name="name">Name</string>
+
+    <string name="messages_header">messages_header</string>
+    <string name="signature_title">signature_title</string>
+    <string name="reply_title">reply_title</string>
+    <string name="sync_header">sync_header</string>
+    <string name="sync_title">sync_title</string>
+    <string name="attachment_summary_off">attachment_summary_off</string>
+    <string name="attachment_summary_on">attachment_summary_on</string>
+    <string name="attachment_title">attachment_title</string>
+
+
+</resources>
