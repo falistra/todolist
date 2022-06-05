@@ -1,6 +1,7 @@
 package com.zanasi.todolistapp
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -42,8 +43,13 @@ class ToDoAdapter (context: Context,toDoList:MutableList<ToDoModel>) : BaseAdapt
 
         viewHolder.textLabel.text = itemTextData
         viewHolder.isDone.isChecked = done
+        if (viewHolder.isDone.isChecked) {
+            viewHolder.back.setBackgroundColor(Color.parseColor("#32CD32"))
+        }
+
         viewHolder.isDone.setOnClickListener {
             updateAndDelete.modifyItem(UID,!done)
+            viewHolder.back.setBackgroundColor(Color.parseColor("#32CD32"))
         }
         viewHolder.isDeleted.setOnClickListener {
             updateAndDelete.onItemDelete(UID)
@@ -56,7 +62,7 @@ class ToDoAdapter (context: Context,toDoList:MutableList<ToDoModel>) : BaseAdapt
         val textLabel : TextView = row!!.findViewById(R.id.item_textView) as TextView
         val isDone : CheckBox = row!!.findViewById(R.id.checkbox) as CheckBox
         val isDeleted : ImageButton = row!!.findViewById(R.id.close) as ImageButton
-
+        val back : RelativeLayout = row!!.findViewById(R.id.itemlayout) as RelativeLayout
     }
 
 

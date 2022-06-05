@@ -23,33 +23,10 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // val fab = findViewById<android.view.View>(R.id.fab) as FloatingActionButton
         listViewItem = findViewById(R.id.item_listView)
-
         database = FirebaseDatabase.getInstance().reference
-/*
-        fab.setOnClickListener {
-            val alertDialog = AlertDialog.Builder(this)
-            val textEditText = EditText(this)
-            alertDialog.setMessage("")
-            alertDialog.setTitle("Add TODO Item")
-            alertDialog.setView(textEditText)
-            alertDialog.setPositiveButton("Add") { dialog, _ ->
-                val todoItemData = ToDoModel.createList()
-                todoItemData.itemDataText = textEditText.text.toString()
-                todoItemData.done = false
-                val newItemData = database.child("todo").push()
-                todoItemData.UID = newItemData.key
-                newItemData.setValue(todoItemData)
-                dialog.dismiss()
-                Toast.makeText(this,"item saved",Toast.LENGTH_LONG).show()
-            }
-
-            alertDialog.show()
-        }
-        */
-
         val addBtn : Button = findViewById(R.id.addItem)
+
         addBtn.setOnClickListener {
             val intent = Intent(this, ItemInsert::class.java).apply {
             }
@@ -57,7 +34,6 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
         }
 
         toDOList = mutableListOf()
-
         adapter = ToDoAdapter(this,toDOList!!)
         listViewItem!!.adapter = adapter
         database.addValueEventListener(object : ValueEventListener {

@@ -8,5 +8,8 @@ class ToDoModel {
 
     var UID : String? = null
     var itemDataText: String? = null
+    var itemWhoText: String? = null
+    var itemWhyText: String? = null
+    var itemWhereText: String? = null
     var done: Boolean? = false
 }
