@@ -80,4 +80,11 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
         itemReference.removeValue()
         adapter.notifyDataSetChanged()
     }
+
+    override fun onItemInfo(itemUID: String) {
+        val itemReference = database.child("todo").child(itemUID)
+        val intent = Intent(this, ItemInfo::class.java).apply {
+        }
+        startActivity(intent)
+    }
 }

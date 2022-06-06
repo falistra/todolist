@@ -37,4 +37,20 @@
         android:minHeight="48dp"
         android:src="@android:drawable/btn_dialog" />
 
+    <ImageButton
+        android:id="@+id/info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/item_textView"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="63dp"
+        android:layout_marginBottom="-2dp"
+        android:background="@android:color/white"
+        android:contentDescription="@string/todo"
+        android:gravity="end"
+        android:minWidth="64dp"
+        android:minHeight="48dp"
+        android:src="@android:drawable/ic_menu_search" />
+
 </RelativeLayout>

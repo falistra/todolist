@@ -55,6 +55,10 @@ class ToDoAdapter (context: Context,toDoList:MutableList<ToDoModel>) : BaseAdapt
             updateAndDelete.onItemDelete(UID)
         }
 
+        viewHolder.isInfo.setOnClickListener {
+            updateAndDelete.onItemInfo(UID)
+        }
+
         return view
     }
 
@@ -62,6 +66,7 @@ class ToDoAdapter (context: Context,toDoList:MutableList<ToDoModel>) : BaseAdapt
         val textLabel : TextView = row!!.findViewById(R.id.item_textView) as TextView
         val isDone : CheckBox = row!!.findViewById(R.id.checkbox) as CheckBox
         val isDeleted : ImageButton = row!!.findViewById(R.id.close) as ImageButton
+        val isInfo : ImageButton = row!!.findViewById(R.id.info) as ImageButton
         val back : RelativeLayout = row!!.findViewById(R.id.itemlayout) as RelativeLayout
     }
 
