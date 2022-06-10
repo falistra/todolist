@@ -10,6 +10,8 @@
     <string name="itemSaved">Aggiunto</string>
     <string name="itemDeleted">Elemento cancellato</string>
 
+    <string name="info">Info</string>
+
     <string name="what">cosa</string>
     <string name="what_hint">cosa</string>
 
