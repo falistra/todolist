@@ -93,7 +93,6 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
                 val currentItem = itemsIterator.next()
                 val toDoItemData = ToDoModel.createList()
                 val map = currentItem.value as HashMap<*, *>
-
                 toDoItemData.UID = currentItem.key
                 toDoItemData.done = map["done"] as Boolean?
                 toDoItemData.itemDataText = map["itemDataText"] as String?
