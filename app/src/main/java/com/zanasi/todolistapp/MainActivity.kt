@@ -24,14 +24,8 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
 
 
         val actionBar = supportActionBar
-
-        // providing title for the ActionBar
         actionBar!!.title =  getString(R.string.app_name)
-
-        // providing subtitle for the ActionBar
         // actionBar.subtitle = "   Design a custom Action Bar"
-
-        // adding icon in the ActionBar
         actionBar.setIcon(R.drawable.app_logo_foreground)
 
         actionBar.setDisplayUseLogoEnabled(true)
