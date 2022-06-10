@@ -3,6 +3,8 @@ package com.zanasi.todolistapp
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.ListView
 import android.widget.Toast
@@ -19,6 +21,21 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
+        val actionBar = supportActionBar
+
+        // providing title for the ActionBar
+        actionBar!!.title =  getString(R.string.app_name)
+
+        // providing subtitle for the ActionBar
+        // actionBar.subtitle = "   Design a custom Action Bar"
+
+        // adding icon in the ActionBar
+        actionBar.setIcon(R.drawable.app_logo_foreground)
+
+        actionBar.setDisplayUseLogoEnabled(true)
+        actionBar.setDisplayShowHomeEnabled(true)
 
         listViewItem = findViewById(R.id.item_listView)
         database = FirebaseDatabase.getInstance().reference
@@ -47,6 +64,25 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
 
     }
 
+    // method to inflate the options menu when
+    // the user opens the menu for the first time
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.main, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    // methods to control the operations that will
+    // happen when user clicks on the action buttons
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.addItem -> {
+                val intent = Intent(this, ItemInsert::class.java).apply {
+                }
+                startActivity(intent)
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
     private fun addItemToList (snapshot: DataSnapshot) {
         val items = snapshot.children.iterator()
@@ -83,7 +119,7 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
             .addOnSuccessListener {
                 Log.i("firebase", "Ricevuto valore ${it.child("itemDataText")}")
                 val data: Map<String, String> = it.getValue() as HashMap<String, String>
-                val bundle: Bundle = Bundle()
+                val bundle = Bundle()
                 for (key in data.keys) {
                     bundle.putSerializable(key, data.get(key))
                 }
