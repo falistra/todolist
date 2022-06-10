@@ -1,15 +1,12 @@
 package com.zanasi.todolistapp
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-
+import android.util.Log
 import android.widget.Button
-// import android.widget.Adapter
-// import android.widget.EditText
 import android.widget.ListView
 import android.widget.Toast
-// import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.*
 
 class MainActivity : AppCompatActivity(), UpdateAndDelete {
@@ -82,9 +79,22 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
     }
 
     override fun onItemInfo(itemUID: String) {
-        val itemReference = database.child("todo").child(itemUID)
-        val intent = Intent(this, ItemInfo::class.java).apply {
+        database.child("todo").child(itemUID).get()
+            .addOnSuccessListener {
+                Log.i("firebase", "Ricevuto valore ${it.child("itemDataText")}")
+                val data: Map<String, String> = it.getValue() as HashMap<String, String>
+                val bundle: Bundle = Bundle()
+                for (key in data.keys) {
+                    bundle.putSerializable(key, data.get(key))
+                }
+
+                val intent = Intent(this, ItemInfo::class.java).apply {
+                    }
+                intent.putExtras(bundle)
+                startActivity(intent)
+            }
+            .addOnFailureListener{
+                Log.e("firebase", "Errore nel ricevere i dati", it)
+            }
         }
-        startActivity(intent)
-    }
 }

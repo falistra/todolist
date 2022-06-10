@@ -6,4 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".ItemInfo">
 
+    <TextView
+        android:id="@+id/info_data_textView"
+        android:layout_width="216dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginTop="320dp"
+        android:text="@string/text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
