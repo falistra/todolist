@@ -13,28 +13,44 @@ import com.google.firebase.database.*
 
 class MainActivity : AppCompatActivity(), UpdateAndDelete {
 
+    // "lateinit" perche' inizializzata dopo in "onCreate"
     private lateinit  var database: DatabaseReference
+
+    // il contenitore dei dati
     var toDOList : MutableList<ToDoModel>? = null
+
     private lateinit var adapter : ToDoAdapter
+
+    // il widget che mostra la lista dei dati
     private var listViewItem : ListView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
+        // set della barra in cima all'activity
         val actionBar = supportActionBar
         actionBar!!.title =  getString(R.string.app_name)
-        // actionBar.subtitle = "   Design a custom Action Bar"
+        // actionBar.subtitle = "   sottotitolo"
         actionBar.setIcon(R.drawable.app_logo_foreground)
-
         actionBar.setDisplayUseLogoEnabled(true)
         actionBar.setDisplayShowHomeEnabled(true)
 
-        listViewItem = findViewById(R.id.item_listView)
-        database = FirebaseDatabase.getInstance().reference
-        val addBtn : Button = findViewById(R.id.addItem)
+        // la ListView che contiene la lista degli Item
+        // ListView è un ViewGroup che visualizza
+        // un elenco di elementi scorrevoli verticalmente.
+        // Gli elementi dell'elenco vengono inseriti automaticamente
+        // nell'elenco utilizzando un adapter,
+        // e ogni elemento viene convertito in una riga in ListView.
 
+        listViewItem = findViewById(R.id.item_listView)
+
+        // connessione al database Firebase
+        database = FirebaseDatabase.getInstance().reference
+
+        // il bottone per aggiungere un item
+        val addBtn : Button = findViewById(R.id.addItem)
+        // al click del bottone si passa all'activity ItemInsert
         addBtn.setOnClickListener {
             val intent = Intent(this, ItemInsert::class.java).apply {
             }
