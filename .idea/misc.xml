@@ -10,9 +10,14 @@
         <entry key="..\:/Users/faust/AndroidStudioProjects/todolist/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/utente/AndroidStudioProjects/todolist/app/src/main/res/drawable-48x48/lens.xml" value="0.1835" />
         <entry key="..\:/Users/utente/AndroidStudioProjects/todolist/app/src/main/res/drawable-v24/done.xml" value="0.175" />
+        <entry key="..\:/Users/utente/AndroidStudioProjects/todolist/app/src/main/res/drawable/app_logo.xml" value="0.156" />
+        <entry key="..\:/Users/utente/AndroidStudioProjects/todolist/app/src/main/res/drawable/custom.xml" value="0.156" />
+        <entry key="..\:/Users/utente/AndroidStudioProjects/todolist/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.156" />
+        <entry key="..\:/Users/utente/AndroidStudioProjects/todolist/app/src/main/res/layout/activity_item_info.xml" value="0.25" />
         <entry key="..\:/Users/utente/AndroidStudioProjects/todolist/app/src/main/res/layout/activity_item_insert.xml" value="0.12386478304742685" />
         <entry key="..\:/Users/utente/AndroidStudioProjects/todolist/app/src/main/res/layout/activity_main.xml" value="0.12386478304742685" />
         <entry key="..\:/Users/utente/AndroidStudioProjects/todolist/app/src/main/res/layout/row_itemslayout.xml" value="0.25" />
+        <entry key="..\:/Users/utente/AndroidStudioProjects/todolist/app/src/main/res/menu/main.xml" value="0.2" />
       </map>
     </option>
   </component>
