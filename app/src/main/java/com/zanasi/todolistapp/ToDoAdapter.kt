@@ -26,6 +26,10 @@ import android.widget.*
 // Inoltre definisce i Listeners come chiamate a metodi
 // di un interfaccia UpdateAndDelete che verra' implementata nel Main
 
+
+// vedi https://guides.codepath.com/android/Using-a-BaseAdapter-with-ListView
+
+
 class ToDoAdapter (context: Context, toDoList:MutableList<ToDoModel>) : BaseAdapter() {
 
     private val inflater : LayoutInflater = LayoutInflater.from(context)

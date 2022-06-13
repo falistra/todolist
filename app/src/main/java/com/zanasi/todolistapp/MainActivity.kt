@@ -52,8 +52,7 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
         val addBtn : Button = findViewById(R.id.addItem)
         // al click del bottone si passa all'activity ItemInsert
         addBtn.setOnClickListener {
-            val intent = Intent(this, ItemInsert::class.java).apply {
-            }
+            val intent = Intent(this, ItemInsert::class.java)
             startActivity(intent)
         }
 
@@ -133,8 +132,7 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
                     bundle.putSerializable(key, data.get(key))
                 }
 
-                val intent = Intent(this, ItemInfo::class.java).apply {
-                    }
+                val intent = Intent(this, ItemInfo::class.java)
                 intent.putExtras(bundle)
                 startActivity(intent)
             }

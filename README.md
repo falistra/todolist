@@ -12,23 +12,23 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+  <a href="https://github.com/falistra/todolist">
+    <img src="images/todolist.png" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">Best-README-Template</h3>
+<h3 align="center">TO DO List App for Android</h3>
 
   <p align="center">
-    An awesome README template to jumpstart your projects!
+    Una app di esempio per introdurre alla programmazione Mobile per Android 
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/falistra/todolist"><strong>Espolara la documentazione »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
+    <a href="https://github.com/falistra/todolist">Demo</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
+    <a href="https://github.com/falistra/todolist/issues">Report Bug</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
+    <a href="https://github.com/falistra/todolist/issues">Desiderata</a>
   </p>
 </div>
 
@@ -36,10 +36,10 @@
 
 <!-- TABLE OF CONTENTS -->
 <details>
-  <summary>Table of Contents</summary>
+  <summary>Indice</summary>
   <ol>
     <li>
-      <a href="#about-the-project">About The Project</a>
+      <a href="#about-the-project">Il progetto</a>
       <ul>
         <li><a href="#built-with">Built With</a></li>
       </ul>
@@ -67,8 +67,44 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-Questa è la mia prima mobile app. I
+Questa è la mia prima mobile app, usando Android Studio - linguaggio Kotlin. I
 Lo scopo è quello di esemplificare :
+
+  <ol>
+    <li> Intent espliciti e/o espliciti : p.e.
+        Source: MainActivity.kt  
+    <code>    
+        val bundle = Bundle()
+                for (key in data.keys) {
+                    bundle.putSerializable(key, data.get(key))
+                }
+                val intent = Intent(this, ItemInfo::class.java)
+                intent.putExtras(bundle)
+                startActivity(intent)
+    </code>
+        Target: ItemInfo.kt
+    <code>
+        setContentView(R.layout.activity_item_info)
+        val extras : Bundle? = getIntent().getExtras()
+        val what = extras?.getString("itemDataText")
+</code>
+
+</li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  </ol>
+
 
 * class Kotlin per strutturare i dati. P.e. la classe ToDoModel per il singolo elemento della todolist
 * event-listener (p.e. sul bottone '+' per aggiungere un evento) 
