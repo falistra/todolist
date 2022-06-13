@@ -13,7 +13,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/falistra/todolist">
-    <img src="images/todolist.png" alt="Logo" width="80" height="80">
+    <img src="images/todolist.png" alt="Logo">
   </a>
 
 <h3 align="center">TO DO List App for Android</h3>
@@ -67,12 +67,13 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-Questa è la mia prima mobile app, usando Android Studio - linguaggio Kotlin. I
+Questa è la mia prima mobile app, usando Android Studio - linguaggio Kotlin.
 Lo scopo è quello di esemplificare :
 
   <ol>
     <li> Intent espliciti e/o espliciti : p.e.
-        Source: MainActivity.kt  
+        Source: MainActivity.kt  <br>
+    <pre>
     <code>    
         val bundle = Bundle()
                 for (key in data.keys) {
@@ -82,27 +83,36 @@ Lo scopo è quello di esemplificare :
                 intent.putExtras(bundle)
                 startActivity(intent)
     </code>
-        Target: ItemInfo.kt
-    <code>
+    </pre>
+        Target: ItemInfo.kt <br>
+    <pre>    
+<code>
         setContentView(R.layout.activity_item_info)
         val extras : Bundle? = getIntent().getExtras()
         val what = extras?.getString("itemDataText")
 </code>
-
+    </pre>
 </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
+
+<li> Interfaccia a base dati Firebase : p.e.
+        Source: MainActivity.kt  <br>
+    <pre>
+    <code>    
+override fun onItemInfo(itemUID: String) {
+database.child("todo").child(itemUID).get()
+    .addOnSuccessListener {
+        Log.i("firebase", "Ricevuto valore ${it.child("itemDataText")}")
+        val data: Map &lt; String, String &gt; = it.getValue() as HashMap &lt; String, String &gt;
+        val bundle = Bundle()
+        ...
+}
+    .addOnFailureListener{
+        Log.e("firebase", "Errore nel ricevere i dati", it)
+    }
+}
+    </code>
+    </pre>
+</li>
   </ol>
 
 
