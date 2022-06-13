@@ -32,8 +32,6 @@
   </p>
 </div>
 
-
-
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Indice</summary>
@@ -65,26 +63,23 @@
 <!-- ABOUT THE PROJECT -->
 ## Riguardo a questo progetto
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
 Questa è la mia prima mobile app, usando Android Studio - linguaggio Kotlin.
 Lo scopo è quello di esemplificare :
 
   <ol>
-    <li> Intent espliciti e/o espliciti : p.e.
-        Source: MainActivity.kt  <br>
+    <li> Intent espliciti e/o espliciti : p.e. Source: <b>MainActivity.kt</b>  <br>
     <pre>
     <code>    
         val bundle = Bundle()
-                for (key in data.keys) {
-                    bundle.putSerializable(key, data.get(key))
-                }
-                val intent = Intent(this, ItemInfo::class.java)
-                intent.putExtras(bundle)
-                startActivity(intent)
+        for (key in data.keys) {
+            bundle.putSerializable(key, data.get(key))
+        }
+        val intent = Intent(this, ItemInfo::class.java)
+        intent.putExtras(bundle)
+        startActivity(intent)
     </code>
     </pre>
-        Target: ItemInfo.kt <br>
+        Target: <b>ItemInfo.kt</b> <br>
     <pre>    
 <code>
         setContentView(R.layout.activity_item_info)
@@ -94,25 +89,32 @@ Lo scopo è quello di esemplificare :
     </pre>
 </li>
 
-<li> Interfaccia a base dati Firebase : p.e.
-        Source: MainActivity.kt  <br>
+<li> Interfaccia a base dati Firebase : p.e. <b>MainActivity.kt</b>  <br>
     <pre>
     <code>    
 override fun onItemInfo(itemUID: String) {
-database.child("todo").child(itemUID).get()
-    .addOnSuccessListener {
-        Log.i("firebase", "Ricevuto valore ${it.child("itemDataText")}")
-        val data: Map &lt; String, String &gt; = it.getValue() as HashMap &lt; String, String &gt;
-        val bundle = Bundle()
-        ...
-}
-    .addOnFailureListener{
-        Log.e("firebase", "Errore nel ricevere i dati", it)
-    }
+    database.child("todo").child(itemUID).get()
+        .addOnSuccessListener {
+            Log.i("firebase", "Ricevuto valore ${it.child("itemDataText")}")
+            val data: Map &lt; String, String &gt; = it.getValue() as HashMap &lt; String, String &gt;
+            val bundle = Bundle()
+            ...
+        }
+        .addOnFailureListener{
+            Log.e("firebase", "Errore nel ricevere i dati", it)
+        }
 }
     </code>
     </pre>
 </li>
+
+<li>
+Usata la Code Convention Standard di Java (pagine 9,10 e 11) del documento in
+<a href="http://www.oracle.com/technetwork/java/javase/documentation/codeconvtoc-136057.html">
+href="http://www.oracle.com/technetwork/java/javase/documentation/codeconvtoc-136057.html
+</a>
+</li>
+
   </ol>
 
 
@@ -132,56 +134,44 @@ Use the `BLANK_README.md` to get started.
 
 ### Built With
 
-l codice è scritto in linguaggio Kotlin.
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
+L'IDE di sviluppo è : 
 
-* [](https://nextjs.org/)
-* [React.js](https://reactjs.org/)
-* [Vue.js](https://vuejs.org/)
-* [Angular](https://angular.io/)
-* [Svelte](https://svelte.dev/)
-* [Laravel](https://laravel.com)
-* [Bootstrap](https://getbootstrap.com)
-* [JQuery](https://jquery.com)
+Android Studio Chipmunk | 2021.2.1 Patch 1
+Build #AI-212.5712.43.2112.8609683, built on May 18, 2022
+Runtime version: 11.0.12+7-b1504.28-7817840 amd64
+VM: OpenJDK 64-Bit Server VM by Oracle Corporation
+Windows 10 10.0
+GC: G1 Young Generation, G1 Old Generation
+Memory: 1280M
+Cores: 8
+Registry: external.system.auto.import.disabled=true
+Non-Bundled Plugins: org.jetbrains.kotlin (212-1.7.0-release-281-AS5457.46)
+
+* [Android Studio](https://developer.android.com/studio)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
 
 
 <!-- GETTING STARTED -->
 ## Avvio 
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+Per ottenere una copia locale attiva e funzionante, 
+seguire questi semplici passaggi di esempio.
 
 ### Prerequisiti
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
 
 ### Installazione
 
 _Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clonare il repo
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone https://github.com/falistra/todolist
    ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
+2. Run
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
 
 
 <!-- USAGE EXAMPLES -->
