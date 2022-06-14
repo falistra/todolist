@@ -83,19 +83,30 @@ class ToDoAdapter (context: Context, toDoList:MutableList<ToDoModel>) : BaseAdap
         // imposta gli attributi del viewHolder
         viewHolder.textLabel.text = itemTextData
         viewHolder.isDone.isChecked = done
+        // se "fatto" cambia lo sfondo
         if (viewHolder.isDone.isChecked) {
-            viewHolder.back.setBackgroundColor(Color.parseColor("#32CD32"))
+            viewHolder.back.setBackgroundColor(R.drawable.done)
+        } else {
+            // altrimenti ripristina lo sfondo a "non fatto"
+            viewHolder.back.setBackgroundResource(R.drawable.custom)
         }
 
         // associa i Listeners ai componenti (bottoni) del viewHolder
+        // al bottone a sinistra (checkbox "fatto")
         viewHolder.isDone.setOnClickListener {
             updateAndDelete.modifyItem(UID,!done)
-            viewHolder.back.setBackgroundColor(Color.parseColor("#32CD32"))
+            if (viewHolder.isDone.isChecked) {
+                viewHolder.back.setBackgroundColor(R.drawable.done)
+            } else {
+                // altrimenti ripristina lo sfondo a "non fatto"
+                viewHolder.back.setBackgroundResource(R.drawable.custom)
+            }
         }
+        // al bottone a destra di cancellazione dell'Item (dalla lista e dal db)
         viewHolder.isDeleted.setOnClickListener {
             updateAndDelete.onItemDelete(UID)
         }
-
+        // al bottone "lente" per info
         viewHolder.isInfo.setOnClickListener {
             updateAndDelete.onItemInfo(UID)
         }

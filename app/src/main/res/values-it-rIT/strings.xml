@@ -9,8 +9,11 @@
     <string name="add">Aggiungi</string>
     <string name="itemSaved">Aggiunto</string>
     <string name="itemDeleted">Elemento cancellato</string>
-
+    <string name="noItemAdd">Nessun elemento aggiunto</string>
     <string name="info">Info</string>
+
+    <string name="ok">Va bene</string>
+
 
     <string name="what">cosa</string>
     <string name="what_hint">cosa</string>

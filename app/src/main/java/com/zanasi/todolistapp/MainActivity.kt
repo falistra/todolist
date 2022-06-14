@@ -8,6 +8,7 @@ import android.view.MenuItem
 import android.widget.Button
 import android.widget.ListView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.*
 
@@ -26,6 +27,13 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // get di un riferimento a un'istanza di FireBase
+        // e con questa set della variabile globale "database" (= visibile da tutte le activities)
+        // dichiarata in MyApplication
+        (this.application as MyApplication).database = FirebaseDatabase.getInstance().reference
+        database = (this.application as MyApplication).database!!
+
         setContentView(R.layout.activity_main)
 
         // set della barra in cima all'activity
@@ -46,7 +54,6 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
         listViewItem = findViewById(R.id.item_listView)
 
         // connessione al database Firebase
-        database = FirebaseDatabase.getInstance().reference
 
         // il bottone per aggiungere un item
         val addBtn : Button = findViewById(R.id.addItem)
@@ -66,28 +73,37 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(applicationContext,"No item added",Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext,getString(R.string.noItemAdd),Toast.LENGTH_LONG).show()
             }
 
         })
 
     }
 
-    // method to inflate the options menu when
-    // the user opens the menu for the first time
+    // metodo per riempire il menu quando l'utente lo apre
+    // per la prima volta
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.main, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
-    // methods to control the operations that will
-    // happen when user clicks on the action buttons
+    // metodo che associa azioni alle voci del menu
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.addItem -> {
-                val intent = Intent(this, ItemInsert::class.java).apply {
-                }
+                val intent = Intent(this, ItemInsert::class.java)
                 startActivity(intent)
+            }
+            R.id.info -> {
+                val builder = AlertDialog.Builder(this)
+                builder.setTitle(getString(R.string.info))
+                builder.setMessage(R.string.app_name)
+
+                builder.setPositiveButton(R.string.ok) { dialog, which ->
+                    Toast.makeText(applicationContext,
+                        R.string.ok, Toast.LENGTH_SHORT).show()
+                }
+                builder.show()
             }
         }
         return super.onOptionsItemSelected(item)

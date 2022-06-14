@@ -17,7 +17,7 @@ class ItemInsert : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_item_insert)
 
-        database = FirebaseDatabase.getInstance().reference
+        database = (this.application as MyApplication).database!!
 
         val bottoneAdd: Button = findViewById(R.id.addItemConfirm)
         bottoneAdd.setOnClickListener {
