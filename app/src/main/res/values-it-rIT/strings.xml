@@ -11,6 +11,7 @@
     <string name="itemDeleted">Elemento cancellato</string>
     <string name="noItemAdd">Nessun elemento aggiunto</string>
     <string name="info">Info</string>
+    <string name="noWhatIns">Nessun testo inserito</string>
 
     <string name="ok">Va bene</string>
 

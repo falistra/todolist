@@ -187,6 +187,7 @@ In apertura l'app presenta una lista di "cose da fare" (in arancione).
 <BR>
 Per ognuna, oltre a una descrizione, compare a sinistra una checkbox di spunta
 per indicare "fatto" : in questo caso cambia il colore di sfondo
+<BR>
 <img src="images/U_2.JPG" alt="Logo">
 <BR>
 Alla destra
@@ -195,10 +196,10 @@ Alla destra
 * e una checkbox per cancellare l'elemento
 
 Sopra alla lista il bottone con lo sfondo blu
-<BR>
 <img src="images/U_3.JPG" alt="Logo">
 <BR>
 permette di aggiungere un elemento
+<BR>
 <img src="images/A_4.JPG" alt="Logo">
 
 <p align="right">(<a href="#top">back to top</a>)</p>

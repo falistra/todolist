@@ -28,15 +28,14 @@
             android:importantForAutofill="no"
             android:inputType="textMultiLine"
             android:minHeight="60dp"
-            android:text="@string/what"
             android:textColor="#78909C"
-            app:layout_constraintBottom_toTopOf="@+id/editText_who"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="spread" />
 
+<!--
         <EditText
             android:id="@+id/editText_who"
             android:layout_width="340dp"
@@ -129,7 +128,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.807"
             app:layout_constraintStart_toEndOf="@+id/editTextDate" />
-
+-->
         <Button
             android:id="@+id/addItemConfirm"
             android:layout_width="wrap_content"
@@ -140,7 +139,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText_why"
+            app:layout_constraintTop_toBottomOf="@+id/editText_what"
             app:layout_constraintVertical_bias="0.024" />
 
 
