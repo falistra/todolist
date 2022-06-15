@@ -24,8 +24,6 @@
     <a href="https://github.com/falistra/todolist"><strong>Espolara la documentazione »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/falistra/todolist">Demo</a>
-    ·
     <a href="https://github.com/falistra/todolist/issues">Report Bug</a>
     ·
     <a href="https://github.com/falistra/todolist/issues">Desiderata</a>
@@ -173,10 +171,10 @@ seguire questi semplici passaggi.
 1. Avviare Android Studio
 
 2. Click su <B> Get from VCS </B>
-   <img src="images/AS_1.JPG" alt="Logo">
+   <img src="images/AS_1.JPG" alt="Get">
 
 3. in <B>HTTP</B> scrivere  <B>https://github.com/falistra/todolist</B>
-   <img src="images/AS_1.JPG" alt="Logo">
+   <img src="images/AS_2.JPG" alt="Repo">
 4. Clonare il repo
 
 
@@ -185,27 +183,39 @@ seguire questi semplici passaggi.
 
 <!-- USAGE EXAMPLES -->
 ## Utilizzo
+In apertura l'app presenta una lista di "cose da fare" (in arancione).
+<img src="images/U_1.JPG" alt="Logo">
+Per ognuna, oltre a una descrizione, compare a sinistra una checkbox di spunta
+per indicare "fatto" : in questo caso cambia il colore di sfondo
+<img src="images/U_2.JPG" alt="Logo">
+Alla destra
+<img src="images/A_5.JPG" alt="Logo">
+* una lente, click per aprire una nuova "vista" (activity) di info sull'elemento
+* e una checkbox per cancellare l'elemento
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+Sopra alla lista il bottone con lo sfondo blu
+<img src="images/U_3.JPG" alt="Logo">
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+permette di aggiungere un elemento
+<img src="images/A_4.JPG" alt="Logo">
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
 
 
 <!-- ROADMAP -->
 ## Sviluppi successivi
 
-- [x] Add Changelog
-- [x] Add back to top links
-- [ ] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
+- [x] Lista degli elementi
+- [x] Checkbox di spunta per "fatto"
+- [x] Aggiunta/Cancellazione di un elemento della lista
+- [x] Alert Dialog con info sull'app
+- [x] Dati su Firebase
 - [x] Supporto multilingue 
     - [x] Italiano
     - [x] Inglese
+- [ ] Aggiunta altre info (p.e "chi", "dove")
+- [ ] Modifica dei dati di un elemento inserito in precedenza
 
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -214,10 +224,8 @@ See the [open issues](https://github.com/othneildrew/Best-README-Template/issues
 <!-- CONTRIBUTING -->
 ## Contributi
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
+Se hai un suggerimento che lo renderebbe migliore, esegui il fork del repository e crea una richiesta pull. Puoi anche aprire semplicemente un problema con il tag "miglioramento".
+Non dimenticare di dare una stella al progetto! Grazie ancora!
 
 1. Fork the Project
 2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
@@ -253,12 +261,8 @@ Link al progetto: [https://github.com/falistra/todolist](https://github.com/fali
 <!-- ACKNOWLEDGMENTS -->
 ## Riconoscimenti
 
-* [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Img Shields](https://shields.io)
-* [GitHub Pages](https://pages.github.com)
-* [Font Awesome](https://fontawesome.com)
-* [React Icons](https://react-icons.github.io/react-icons/search)
+* [Corso di Programmazione Mobile presso  UNIMORE](https://git.hipert.unimore.it/ncapodieci/mobileprogramming/-/wikis/home)
+* [Developer Android](https://developer.android.com/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
