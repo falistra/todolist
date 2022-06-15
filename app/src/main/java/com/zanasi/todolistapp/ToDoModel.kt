@@ -6,6 +6,8 @@ class ToDoModel {
     }
     var UID : String? = null
     var itemDataText: String? = null
+    var itemTime: String? = null
+    var itemDate: String? = null
     var itemWhoText: String? = null
     var itemWhyText: String? = null
     var itemWhereText: String? = null

@@ -2,11 +2,12 @@ package com.zanasi.todolistapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
 
 class ItemInsert : AppCompatActivity() {
 
@@ -18,9 +19,24 @@ class ItemInsert : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_item_insert)
 
+
+        val bottoneWhen: Button = findViewById(R.id.whenButton)
+        bottoneWhen.setOnClickListener {
+            val setTime = SetTime(findViewById(R.id.whenText))
+            setTime.show(supportFragmentManager, "timePicker")
+        }
+
+        val buttonDate : Button = findViewById(R.id.dateButton)
+        buttonDate.setOnClickListener {
+            val setDate = SetDate(findViewById(R.id.dateText))
+            setDate.show(supportFragmentManager, "datePicker")
+        }
+
         val bottoneAdd: Button = findViewById(R.id.addItemConfirm)
         bottoneAdd.setOnClickListener {
             val what : EditText = findViewById(R.id.editText_what)
+            val quandoTime : TextView = findViewById(R.id.whenText)
+            val quandoData : TextView = findViewById(R.id.dateText)
 
             if (what.text.toString().isEmpty()) {
                 Toast.makeText(applicationContext, getString(R.string.noWhatIns), Toast.LENGTH_SHORT).show()
@@ -32,6 +48,8 @@ class ItemInsert : AppCompatActivity() {
                 database = (this.application as MyApplication).database!!
 
                 todoItemData.itemDataText = what.text.toString()
+                todoItemData.itemTime = quandoTime.text.toString()
+                todoItemData.itemDate = quandoData.text.toString()
 
                 // eventuali altri dati , legati al singolo item
 /*

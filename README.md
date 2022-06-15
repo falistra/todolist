@@ -202,6 +202,10 @@ Sopra alla lista il bottone con lo sfondo blu
 permette di aggiungere un elemento
 <BR>
 <img src="images/A_4.JPG" alt="Logo">
+<BR>
+Attenzione! Le regole di sicurezza sono (per ora) pubbliche, quindi chiunque può sottrarre, 
+modificare o eliminare dati dal database. Si prega di usare con rispetto!
+
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
