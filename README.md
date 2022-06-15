@@ -19,7 +19,7 @@
 <h3 align="center">TO DO List App for Android</h3>
 
   <p align="center">
-    Una app di esempio per introdurre alla programmazione Mobile per Android 
+    Una app di esempio per introdurre alla programmazione Mobile per Android in Kotlin
     <br />
     <a href="https://github.com/falistra/todolist"><strong>Espolara la documentazione »</strong></a>
     <br />
@@ -39,32 +39,32 @@
     <li>
       <a href="#about-the-project">Il progetto</a>
       <ul>
-        <li><a href="#built-with">Built With</a></li>
+        <li><a href="#built-with">Costruito con</a></li>
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Getting Started</a>
+      <a href="#getting-started">Avvio</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
+        <li><a href="#prerequisites">Prerequisiti</a></li>
+        <li><a href="#installation">Installazione</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
+    <li><a href="#usage">Uso</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
+    <li><a href="#license">Licenza</a></li>
+    <li><a href="#contact">Contatti</a></li>
+    <li><a href="#acknowledgments">Riconoscimenti</a></li>
   </ol>
 </details>
 
 
-
 <!-- ABOUT THE PROJECT -->
-## Riguardo a questo progetto
+## Introduzione
 
 Questa è la mia prima mobile app, usando Android Studio - linguaggio Kotlin.
-Lo scopo è quello di esemplificare :
+E' una ennesima variazione della app "TO DO LIST" per gestire una lista di promemoria di "cose da fare".
+Ma il vero scopo è quello di esemplificare alcuni aspetti della programmazione mobile:
 
   <ol>
     <li> Intent espliciti e/o espliciti : p.e. Source: <b>MainActivity.kt</b>  <br>
@@ -88,6 +88,24 @@ Lo scopo è quello di esemplificare :
 </code>
     </pre>
 </li>
+
+<li>
+class Kotlin per strutturare i dati. P.e. la classe ToDoModel
+    <pre>    
+<code>
+class ToDoModel {
+    companion object Factory {
+        fun createList() : ToDoModel = ToDoModel()
+    }
+    var UID : String? = null
+    var itemDataText: String? = null
+    ...
+    var done: Boolean? = false
+}
+</code>
+    </pre>
+</li>
+
 
 <li> Interfaccia a base dati Firebase : p.e. <b>MainActivity.kt</b>  <br>
     <pre>
@@ -118,24 +136,14 @@ href="http://www.oracle.com/technetwork/java/javase/documentation/codeconvtoc-13
   </ol>
 
 
-* class Kotlin per strutturare i dati. P.e. la classe ToDoModel per il singolo elemento della todolist
-* event-listener (p.e. sul bottone '+' per aggiungere un evento) 
-* modello CRUD : un elemento può essere creato  / modificato / cancellato dalla todolist
-* uso del database Firebase : permette di avere in cloud i dati 
-
-
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to expanding this template!
-
-Use the `BLANK_README.md` to get started.
-
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
 
-### Built With
+### Costruito con
 
 L'IDE di sviluppo è : 
-
+<pre>
 Android Studio Chipmunk | 2021.2.1 Patch 1
 Build #AI-212.5712.43.2112.8609683, built on May 18, 2022
 Runtime version: 11.0.12+7-b1504.28-7817840 amd64
@@ -146,7 +154,9 @@ Memory: 1280M
 Cores: 8
 Registry: external.system.auto.import.disabled=true
 Non-Bundled Plugins: org.jetbrains.kotlin (212-1.7.0-release-281-AS5457.46)
+</pre>
 
+L'IDE può essere scaricato qui:
 * [Android Studio](https://developer.android.com/studio)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -156,26 +166,25 @@ Non-Bundled Plugins: org.jetbrains.kotlin (212-1.7.0-release-281-AS5457.46)
 ## Avvio 
 
 Per ottenere una copia locale attiva e funzionante, 
-seguire questi semplici passaggi di esempio.
-
-### Prerequisiti
-
+seguire questi semplici passaggi.
 
 ### Installazione
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
+1. Avviare Android Studio
 
-1. Clonare il repo
-   ```sh
-   git clone https://github.com/falistra/todolist
-   ```
-2. Run
+2. Click su <B> Get from VCS </B>
+   <img src="images/AS_1.JPG" alt="Logo">
+
+3. in <B>HTTP</B> scrivere  <B>https://github.com/falistra/todolist</B>
+   <img src="images/AS_1.JPG" alt="Logo">
+4. Clonare il repo
+
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
 <!-- USAGE EXAMPLES -->
-## Usage
+## Utilizzo
 
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 
@@ -192,9 +201,9 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 - [x] Add back to top links
 - [ ] Add Additional Templates w/ Examples
 - [ ] Add "components" document to easily copy & paste sections of the readme
-- [ ] Supporto multilingue 
-    - [ ] Italiano
-    - [ ] Inglese
+- [x] Supporto multilingue 
+    - [x] Italiano
+    - [x] Inglese
 
 See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
 
@@ -221,7 +230,7 @@ Don't forget to give the project a star! Thanks again!
 
 
 <!-- LICENSE -->
-## License
+## Licenza
 
 Distributo sotto licenza MIT License.
 Si declina ogni responsabilità nel suo utilizzo.
@@ -231,9 +240,9 @@ Si declina ogni responsabilità nel suo utilizzo.
 
 
 <!-- CONTACT -->
-## Contact
+## Contatti
 
-Fausto Zanasi - [@your_twitter](https://twitter.com/your_username) - email@example.com
+Fausto Zanasi - fausto.zanasi@gmail.com
 
 Link al progetto: [https://github.com/falistra/todolist](https://github.com/falistra/todolist)
 
