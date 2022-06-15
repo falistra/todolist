@@ -1,12 +1,11 @@
 <div id="top"></div>
-
+<!--
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
-
+-->
 
 
 <!-- PROJECT LOGO -->
@@ -185,17 +184,20 @@ seguire questi semplici passaggi.
 ## Utilizzo
 In apertura l'app presenta una lista di "cose da fare" (in arancione).
 <img src="images/U_1.JPG" alt="Logo">
+<BR>
 Per ognuna, oltre a una descrizione, compare a sinistra una checkbox di spunta
 per indicare "fatto" : in questo caso cambia il colore di sfondo
 <img src="images/U_2.JPG" alt="Logo">
+<BR>
 Alla destra
 <img src="images/A_5.JPG" alt="Logo">
 * una lente, click per aprire una nuova "vista" (activity) di info sull'elemento
 * e una checkbox per cancellare l'elemento
 
 Sopra alla lista il bottone con lo sfondo blu
+<BR>
 <img src="images/U_3.JPG" alt="Logo">
-
+<BR>
 permette di aggiungere un elemento
 <img src="images/A_4.JPG" alt="Logo">
 
