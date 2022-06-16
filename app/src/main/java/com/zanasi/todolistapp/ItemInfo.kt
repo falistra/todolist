@@ -11,9 +11,9 @@ class ItemInfo : AppCompatActivity() {
         val extras : Bundle? = getIntent().getExtras()
         val what = extras?.getString("itemDataText")
         var quandoData = extras?.getString("itemDate").toString()
-        // if (quandoData.isNullOrEmpty()) quandoData = ""
+        if (quandoData == "null") quandoData = ""
         var quandoOra = extras?.getString("itemTime").toString()
-        // if (quandoOra.isNullOrEmpty()) quandoOra = ""
+        if (quandoOra == "null") quandoOra = ""
 
         val info_data_textView: TextView = findViewById(R.id.info_data_textView)
         info_data_textView.setText(what.toString())

@@ -2,7 +2,6 @@ package com.zanasi.todolistapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -42,7 +41,7 @@ class ItemInsert : AppCompatActivity() {
                 Toast.makeText(applicationContext, getString(R.string.noWhatIns), Toast.LENGTH_SHORT).show()
             }
             else {
-                val todoItemData = ToDoModel.createList()
+                val todoItemData = ToDoModel.creaToDoItem()
 
                 // recupero il ref al DB da MyApplication
                 database = (this.application as MyApplication).database!!

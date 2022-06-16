@@ -26,7 +26,6 @@ import android.widget.*
 // Inoltre definisce i Listeners come chiamate a metodi
 // di un interfaccia UpdateAndDelete che verra' implementata nel Main
 
-
 // vedi https://guides.codepath.com/android/Using-a-BaseAdapter-with-ListView
 
 

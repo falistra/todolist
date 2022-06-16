@@ -110,13 +110,14 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
     }
 
     private fun addItemToList (snapshot: DataSnapshot) {
+
         val items = snapshot.children.iterator()
         if (items.hasNext()) {
             val toDoIndexedValue = items.next()
             val itemsIterator = toDoIndexedValue.children.iterator()
             while (itemsIterator.hasNext()) {
                 val currentItem = itemsIterator.next()
-                val toDoItemData = ToDoModel.createList()
+                val toDoItemData = ToDoModel.creaToDoItem()
                 val map = currentItem.value as HashMap<*, *>
                 toDoItemData.UID = currentItem.key
                 toDoItemData.done = map["done"] as Boolean?
@@ -125,6 +126,7 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
             }
         }
         adapter.notifyDataSetChanged()
+
     }
 
     override fun modifyItem(itemUID: String, isDone: Boolean) {
