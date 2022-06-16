@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
 
     // il contenitore dei dati
     var toDOList : MutableList<ToDoModel>? = null
+    lateinit var toDoModelList : ToDoModelList
 
     private lateinit var adapter : ToDoAdapter
 
@@ -64,11 +65,12 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
         }
 
         toDOList = mutableListOf()
-        adapter = ToDoAdapter(this,toDOList!!)
+        toDoModelList = ToDoModelList(toDOList)
+        adapter = ToDoAdapter(this,toDoModelList.get()!!)
         listViewItem!!.adapter = adapter
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                toDOList!!.clear()
+                toDoModelList.get()!!.clear()
                 addItemToList(snapshot)
             }
 
@@ -122,11 +124,11 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
                 toDoItemData.UID = currentItem.key
                 toDoItemData.done = map["done"] as Boolean?
                 toDoItemData.itemDataText = map["itemDataText"] as String?
-                toDOList!!.add(toDoItemData)
+                toDoModelList.get()!!.add(toDoItemData)
             }
         }
         adapter.notifyDataSetChanged()
-
+        // toDoModelList.start()
     }
 
     override fun modifyItem(itemUID: String, isDone: Boolean) {
