@@ -2,6 +2,7 @@ package com.zanasi.todolistapp
 
 import android.app.job.JobParameters
 import android.app.job.JobService
+import android.widget.Toast
 
 class ToDoModel : Comparable<ToDoModel> {
     companion object Factory {
@@ -28,14 +29,4 @@ class ToDoModelList(listItems: MutableList<ToDoModel>?)  {
         return listItems
     }
 
-}
-
-class MyJobScheduler : JobService() {
-    override fun onStopJob(p0: JobParameters?): Boolean {
-        TODO("Not yet implemented")
-    }
-
-    override fun onStartJob(p0: JobParameters?): Boolean {
-        TODO("Not yet implemented")
-    }
 }

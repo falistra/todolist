@@ -21,12 +21,13 @@ class ItemInsert : AppCompatActivity() {
 
         val bottoneWhen: Button = findViewById(R.id.whenButton)
         bottoneWhen.setOnClickListener {
+            // https://developer.android.com/reference/android/widget/TimePicker
             val setTime = SetTime(findViewById(R.id.whenText))
             setTime.show(supportFragmentManager, "timePicker")
         }
 
-        val buttonDate : Button = findViewById(R.id.dateButton)
-        buttonDate.setOnClickListener {
+        val bottoneDate : Button = findViewById(R.id.dateButton)
+        bottoneDate.setOnClickListener {
             val setDate = SetDate(findViewById(R.id.dateText))
             setDate.show(supportFragmentManager, "datePicker")
         }

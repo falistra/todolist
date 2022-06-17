@@ -1,5 +1,11 @@
 package com.zanasi.todolistapp
 
+import android.app.job.JobInfo
+import android.app.job.JobParameters
+import android.app.job.JobScheduler
+import android.app.job.JobService
+import android.content.ComponentName
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -128,7 +134,15 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
             }
         }
         adapter.notifyDataSetChanged()
-        // toDoModelList.start()
+
+        var component= ComponentName(this,MyJobScheduler::class.java)
+        var jobInfo=  JobInfo.Builder(1,component)
+
+            .setMinimumLatency(5000)
+            .build()
+
+        var jobScheduler=getSystemService(Context.JOB_SCHEDULER_SERVICE) as JobScheduler
+        jobScheduler.schedule(jobInfo)
     }
 
     override fun modifyItem(itemUID: String, isDone: Boolean) {
@@ -160,4 +174,22 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
                 Log.e("firebase", "Errore nel ricevere i dati", it)
             }
         }
+}
+
+class MyJobScheduler : JobService() {
+    override fun onStopJob(p0: JobParameters?): Boolean {
+        Toast.makeText(applicationContext,"Job Cancelled ",Toast.LENGTH_SHORT).show()
+        return false
+    }
+
+    override fun onStartJob(p0: JobParameters?): Boolean {
+        var k=0;
+        Toast.makeText(applicationContext,getString(R.string.sortStart),Toast.LENGTH_SHORT).show()
+        for ( k in 0..10)
+        {
+            Log.v("JobScheduler","Running Job $k")
+        }
+        Toast.makeText(applicationContext,getString(R.string.sortEnded),Toast.LENGTH_SHORT).show()
+        return false
+    }
 }

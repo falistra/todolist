@@ -50,6 +50,8 @@
     <string name="pick_time">when</string>
     <string name="textWhen" />
     <string name="dateButton">date</string>
+    <string name="sortStart">Sort List by date started</string>
+    <string name="sortEnded">Sort list ended</string>
 
 
 </resources>
