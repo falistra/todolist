@@ -135,13 +135,13 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
         }
         adapter.notifyDataSetChanged()
 
-        var component= ComponentName(this,MyJobScheduler::class.java)
-        var jobInfo=  JobInfo.Builder(1,component)
+        val component= ComponentName(this,MyJobScheduler::class.java)
+        val jobInfo=  JobInfo.Builder(1,component)
 
             .setMinimumLatency(5000)
             .build()
 
-        var jobScheduler=getSystemService(Context.JOB_SCHEDULER_SERVICE) as JobScheduler
+        val jobScheduler=getSystemService(Context.JOB_SCHEDULER_SERVICE) as JobScheduler
         jobScheduler.schedule(jobInfo)
     }
 
@@ -183,7 +183,6 @@ class MyJobScheduler : JobService() {
     }
 
     override fun onStartJob(p0: JobParameters?): Boolean {
-        var k=0;
         Toast.makeText(applicationContext,getString(R.string.sortStart),Toast.LENGTH_SHORT).show()
         for ( k in 0..10)
         {
