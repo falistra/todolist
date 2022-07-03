@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
     var toDOList : MutableList<ToDoModel>? = null
     lateinit var toDoModelList : ToDoModelList
 
+    // adatta un item/data ad essere un item/view
     private lateinit var adapter : ToDoAdapter
 
     // il widget che mostra la lista dei dati
@@ -36,7 +37,7 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
         super.onCreate(savedInstanceState)
 
         // get di un riferimento a un'istanza di FireBase
-        // e con questa set della variabile globale "database" (= visibile da tutte le activities)
+        // e, con questa, set della variabile globale "database" (= visibile da tutte le activities)
         // dichiarata in MyApplication
         (this.application as MyApplication).database = FirebaseDatabase.getInstance().reference
         database = (this.application as MyApplication).database!!
@@ -137,17 +138,15 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
         }
         adapter.notifyDataSetChanged()
 
-        /*
-        val component= ComponentName(this,MyJobScheduler::class.java)
+        val component= ComponentName(this,ToDoModelList::class.java)
+        // la classe ToDoModelList deriva da JobService
         val jobInfo=  JobInfo.Builder(1,component)
-
             .setMinimumLatency(5000)
             .build()
 
         val jobScheduler=getSystemService(Context.JOB_SCHEDULER_SERVICE) as JobScheduler
         jobScheduler.schedule(jobInfo)
 
-         */
     }
 
     override fun modifyItem(itemUID: String, isDone: Boolean) {
@@ -179,21 +178,4 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
                 Log.e("firebase", "Errore nel ricevere i dati", it)
             }
         }
-}
-
-class MyJobScheduler : JobService() {
-    override fun onStopJob(p0: JobParameters?): Boolean {
-        Toast.makeText(applicationContext,"Job Cancelled ",Toast.LENGTH_SHORT).show()
-        return false
-    }
-
-    override fun onStartJob(p0: JobParameters?): Boolean {
-        Toast.makeText(applicationContext,getString(R.string.sortStart),Toast.LENGTH_SHORT).show()
-        for ( k in 0..10)
-        {
-            Log.v("JobScheduler","Running Job $k")
-        }
-        Toast.makeText(applicationContext,getString(R.string.sortEnded),Toast.LENGTH_SHORT).show()
-        return false
-    }
 }

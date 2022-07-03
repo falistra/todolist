@@ -15,9 +15,7 @@ import android.widget.*
 // BaseAdapter e' astratta e e' richiesta l'implementazione dei seguenti metodi
 
 // int getCount() -> la dimensione di toDoList
-
 // Object getItem(int position) -> indexing di toDoList
-
 // long getItemId(int position) -> cast da int a long
 
 // View getView(int position, View convertView, ViewGroup parent) ->
