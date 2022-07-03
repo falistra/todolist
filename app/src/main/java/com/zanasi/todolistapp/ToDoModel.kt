@@ -2,6 +2,8 @@ package com.zanasi.todolistapp
 
 import android.app.job.JobParameters
 import android.app.job.JobService
+import android.service.autofill.Validators.and
+import android.util.Log
 import android.widget.Toast
 
 class ToDoModel : Comparable<ToDoModel> {
@@ -19,14 +21,40 @@ class ToDoModel : Comparable<ToDoModel> {
 
     override fun compareTo(other: ToDoModel): Int {
         // da implementare itemDate
-        return this.itemDate!!.compareTo(other.itemDate!!)
+        if ((this.itemDate != null) and (other.itemDate == null)) return 1
+        if ((this.itemDate == null) and (other.itemDate != null)) return -1
+        // da perfezionare ...
+        return 0
     }
+
 }
 
-class ToDoModelList(listItems: MutableList<ToDoModel>?)  {
-    val listItems = listItems
+class ToDoModelList() :  JobService()  {
+    var listItems : MutableList<ToDoModel>?= null
+    var adapter: ToDoAdapter? = null
+
+    constructor( listItems: MutableList<ToDoModel>? , adapter: ToDoAdapter? ) : this() {
+        this.listItems = listItems
+        this.adapter = adapter
+    }
+
     fun get() : MutableList<ToDoModel>? {
         return listItems
+    }
+
+    override fun onStopJob(p0: JobParameters?): Boolean {
+        Toast.makeText(applicationContext,"Job Cancelled ",Toast.LENGTH_SHORT).show()
+        return false
+    }
+
+    override fun onStartJob(p0: JobParameters?): Boolean {
+        Toast.makeText(applicationContext,getString(R.string.sortStart),Toast.LENGTH_SHORT).show()
+        listItems?.sort()
+        Log.e("LIST >>>",listItems.toString())
+        adapter?.notifyDataSetChanged()
+
+        Toast.makeText(applicationContext,getString(R.string.sortEnded),Toast.LENGTH_SHORT).show()
+        return false
     }
 
 }

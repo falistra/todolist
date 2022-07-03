@@ -30,8 +30,8 @@ import android.widget.*
 
 
 class ToDoAdapter (context: Context, toDoList:MutableList<ToDoModel>) : BaseAdapter() {
-
     private val inflater : LayoutInflater = LayoutInflater.from(context)
+
 
     // la struttura che contiene i dati
     private var itemList = toDoList

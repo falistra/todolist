@@ -71,8 +71,10 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
         }
 
         toDOList = mutableListOf()
-        toDoModelList = ToDoModelList(toDOList)
-        adapter = ToDoAdapter(this,toDoModelList.get()!!)
+        adapter = ToDoAdapter(this, toDOList!!)
+        toDoModelList = ToDoModelList(toDOList,adapter)
+
+
         listViewItem!!.adapter = adapter
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -135,6 +137,7 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
         }
         adapter.notifyDataSetChanged()
 
+        /*
         val component= ComponentName(this,MyJobScheduler::class.java)
         val jobInfo=  JobInfo.Builder(1,component)
 
@@ -143,6 +146,8 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
 
         val jobScheduler=getSystemService(Context.JOB_SCHEDULER_SERVICE) as JobScheduler
         jobScheduler.schedule(jobInfo)
+
+         */
     }
 
     override fun modifyItem(itemUID: String, isDone: Boolean) {
