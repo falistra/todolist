@@ -17,21 +17,22 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.*
+import kotlin.concurrent.thread
 
 class MainActivity : AppCompatActivity(), UpdateAndDelete {
 
     // "lateinit" perche' inizializzata dopo in "onCreate"
-    private lateinit  var database: DatabaseReference
+    private lateinit var database: DatabaseReference
 
     // il contenitore dei dati
-    var toDOList : MutableList<ToDoModel>? = null
-    lateinit var toDoModelList : ToDoModelList
+    var toDOList: MutableList<ToDoModel>? = null
+    lateinit var toDoModelList: ToDoModelList
 
     // adatta un item/data ad essere un item/view
-    private lateinit var adapter : ToDoAdapter
+    private lateinit var adapter: ToDoAdapter
 
     // il widget che mostra la lista dei dati
-    private var listViewItem : ListView? = null
+    private var listViewItem: ListView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +47,7 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
 
         // set della barra in cima all'activity
         val actionBar = supportActionBar
-        actionBar!!.title =  getString(R.string.app_name)
+        actionBar!!.title = getString(R.string.app_name)
         // actionBar.subtitle = "   sottotitolo"
         actionBar.setIcon(R.drawable.app_logo_foreground)
         actionBar.setDisplayUseLogoEnabled(true)
@@ -64,7 +65,7 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
         // connessione al database Firebase
 
         // il bottone per aggiungere un item
-        val addBtn : Button = findViewById(R.id.addItem)
+        val addBtn: Button = findViewById(R.id.addItem)
         // al click del bottone si passa all'activity ItemInsert
         addBtn.setOnClickListener {
             val intent = Intent(this, ItemInsert::class.java)
@@ -73,7 +74,7 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
 
         toDOList = mutableListOf()
         adapter = ToDoAdapter(this, toDOList!!)
-        toDoModelList = ToDoModelList(toDOList,adapter)
+        toDoModelList = ToDoModelList(toDOList, adapter)
 
 
         listViewItem!!.adapter = adapter
@@ -81,18 +82,27 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
             override fun onDataChange(snapshot: DataSnapshot) {
                 toDoModelList.get()!!.clear()
                 addItemToList(snapshot)
+                clearList()
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(applicationContext,getString(R.string.noItemAdd),Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext, getString(R.string.noItemAdd), Toast.LENGTH_LONG)
+                    .show()
             }
-
         })
+
+        // schedulazione di un job
+        val component = ComponentName(this, JobSchedulato::class.java)
+        val jobInfo = JobInfo.Builder(1, component)
+            .setMinimumLatency(5000)
+            .build()
+        val jobScheduler = getSystemService(Context.JOB_SCHEDULER_SERVICE) as JobScheduler
+        jobScheduler.schedule(jobInfo)
+
 
     }
 
-    // metodo per riempire il menu quando l'utente lo apre
-    // per la prima volta
+    // metodo per riempire il menu quando l'utente lo apre  per la prima volta
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.main, menu)
         return super.onCreateOptionsMenu(menu)
@@ -111,8 +121,10 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
                 builder.setMessage(R.string.app_name)
 
                 builder.setPositiveButton(R.string.ok) { dialog, which ->
-                    Toast.makeText(applicationContext,
-                        R.string.ok, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        applicationContext,
+                        R.string.ok, Toast.LENGTH_SHORT
+                    ).show()
                 }
                 builder.show()
             }
@@ -120,7 +132,7 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun addItemToList (snapshot: DataSnapshot) {
+    private fun addItemToList(snapshot: DataSnapshot) {
 
         val items = snapshot.children.iterator()
         if (items.hasNext()) {
@@ -138,21 +150,34 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
         }
         adapter.notifyDataSetChanged()
 
-        val component= ComponentName(this,ToDoModelList::class.java)
-        // la classe ToDoModelList deriva da JobService
-        val jobInfo=  JobInfo.Builder(1,component)
-            .setMinimumLatency(5000)
-            .build()
+    }
 
-        val jobScheduler=getSystemService(Context.JOB_SCHEDULER_SERVICE) as JobScheduler
-        jobScheduler.schedule(jobInfo)
-
+    fun clearList() {
+        val thread = object : Thread() {
+            override fun run() {
+                synchronized(this) {
+                    sleep(2000)
+                    runOnUiThread {
+                        for (item in toDoModelList.listItems!!) {
+                            if (item.done == true) {
+                                val itemReference = database.child("todo").child(item.UID!!)
+                                itemReference.removeValue()
+                            }
+                        }
+                        toDoModelList.listItems!!.sort()
+                        toDoModelList.adapter!!.notifyDataSetChanged()
+                    }
+                }
+            }
+        }
+        thread.start()
     }
 
     override fun modifyItem(itemUID: String, isDone: Boolean) {
         val itemReference = database.child("todo").child(itemUID)
         itemReference.child("done").setValue(isDone)
     }
+
 
     override fun onItemDelete(itemUID: String) {
         val itemReference = database.child("todo").child(itemUID)
@@ -174,8 +199,23 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
                 intent.putExtras(bundle)
                 startActivity(intent)
             }
-            .addOnFailureListener{
+            .addOnFailureListener {
                 Log.e("firebase", "Errore nel ricevere i dati", it)
             }
-        }
+    }
 }
+
+
+class JobSchedulato : JobService() {
+    override fun onStopJob(p0: JobParameters?): Boolean {
+        Toast.makeText(applicationContext, "Job Cancelled ", Toast.LENGTH_SHORT).show()
+        return false
+    }
+
+    override fun onStartJob(p0: JobParameters?): Boolean {
+        Toast.makeText(applicationContext, getString(R.string.sortStart), Toast.LENGTH_SHORT).show()
+        Toast.makeText(applicationContext, getString(R.string.sortEnded), Toast.LENGTH_SHORT).show()
+        return false
+    }
+}
+

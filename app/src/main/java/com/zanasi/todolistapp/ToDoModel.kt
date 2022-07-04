@@ -8,12 +8,14 @@ import android.widget.Toast
 
 class ToDoModel : Comparable<ToDoModel> {
     companion object Factory {
-        fun creaToDoItem() : ToDoModel = ToDoModel()
+        fun creaToDoItem(): ToDoModel = ToDoModel()
     }
-    var UID : String? = null
+
+    var UID: String? = null
     var itemDataText: String? = null
     var itemTime: String? = null
     var itemDate: String? = null
+
     // var itemWhoText: String? = null
     // var itemWhyText: String? = null
     // var itemWhereText: String? = null
@@ -29,32 +31,22 @@ class ToDoModel : Comparable<ToDoModel> {
 
 }
 
-class ToDoModelList() :  JobService()  {
-    var listItems : MutableList<ToDoModel>?= null
+class ToDoModelList() {
+    var listItems: MutableList<ToDoModel>? = null
     var adapter: ToDoAdapter? = null
 
-    constructor( listItems: MutableList<ToDoModel>? , adapter: ToDoAdapter? ) : this() {
+    constructor(listItems: MutableList<ToDoModel>?, adapter: ToDoAdapter?) : this() {
         this.listItems = listItems
         this.adapter = adapter
     }
 
-    fun get() : MutableList<ToDoModel>? {
+    fun get(): MutableList<ToDoModel>? {
         return listItems
     }
 
-    override fun onStopJob(p0: JobParameters?): Boolean {
-        Toast.makeText(applicationContext,"Job Cancelled ",Toast.LENGTH_SHORT).show()
-        return false
+    fun sort() {
+        listItems!!.sort()
     }
 
-    override fun onStartJob(p0: JobParameters?): Boolean {
-        Toast.makeText(applicationContext,getString(R.string.sortStart),Toast.LENGTH_SHORT).show()
-        listItems?.sort()
-        Log.e("LIST >>>",listItems.toString())
-        adapter?.notifyDataSetChanged()
-
-        Toast.makeText(applicationContext,getString(R.string.sortEnded),Toast.LENGTH_SHORT).show()
-        return false
-    }
 
 }

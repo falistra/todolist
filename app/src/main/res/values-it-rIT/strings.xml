@@ -48,8 +48,9 @@
     <string name="pick_time">when</string>
     <string name="textWhen" />
     <string name="dateButton">date</string>
-    <string name="sortStart">Ordinamente per data iniziato</string>
-    <string name="sortEnded">Ordinamente per data terminato</string>
+    <string name="sortStart">Job backgroud started</string>
+    <string name="sortEnded">Job backgroud stopped</string>
+
 
 
 </resources>

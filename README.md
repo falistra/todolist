@@ -60,8 +60,9 @@
 ## Introduzione
 
 Questa è la mia prima mobile app, usando Android Studio - linguaggio Kotlin.
-E' una ennesima variazione della app "TO DO LIST" per gestire una lista di promemoria di "cose da fare".
-Ma il vero scopo è quello di esemplificare alcuni aspetti della programmazione mobile:
+Si tratta di una ennesima variazione della app "TO DO LIST" per gestire una lista di promemoria di "cose da fare".
+Ma il vero scopo è quello di esemplificare alcuni aspetti della programmazione mobile.
+Fra questi, i più importanti sono:
 
   <ol>
     <li> Intent espliciti e/o espliciti : p.e. Source: <b>MainActivity.kt</b>  <br>
@@ -122,6 +123,34 @@ override fun onItemInfo(itemUID: String) {
     </code>
     </pre>
 </li>
+
+<li> Thread per togliere dalla lista gli item "fatti"  <br>
+    <pre>
+    <code>    
+fun clearList()  {
+        val thread = object : Thread() {
+            override fun run() {
+                synchronized(this) {
+                    sleep(2000)
+                    runOnUiThread {
+                        for (item in toDoModelList.listItems!!) {
+                            if (item.done == true) {
+                                val itemReference = database.child("todo").child(item.UID!!)
+                                itemReference.removeValue()
+                            }
+                        }
+                        toDoModelList.listItems!!.sort()
+                        toDoModelList.adapter!!.notifyDataSetChanged()
+                    }
+                }
+            }
+        }
+        thread.start()
+}
+    </code>
+    </pre>
+</li>
+
 
 <li>
 Usata la Code Convention Standard di Java (pagine 9,10 e 11) del documento in
