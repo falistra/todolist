@@ -19,7 +19,7 @@ class ToDoModel : Comparable<ToDoModel> {
     // var itemWhoText: String? = null
     // var itemWhyText: String? = null
     // var itemWhereText: String? = null
-    var done: Boolean? = false
+    var done: Boolean = false
 
     override fun compareTo(other: ToDoModel): Int {
         // da implementare itemDate
@@ -33,11 +33,9 @@ class ToDoModel : Comparable<ToDoModel> {
 
 class ToDoModelList() {
     var listItems: MutableList<ToDoModel>? = null
-    var adapter: ToDoAdapter? = null
 
-    constructor(listItems: MutableList<ToDoModel>?, adapter: ToDoAdapter?) : this() {
+    constructor(listItems: MutableList<ToDoModel>?) : this() {
         this.listItems = listItems
-        this.adapter = adapter
     }
 
     fun get(): MutableList<ToDoModel>? {

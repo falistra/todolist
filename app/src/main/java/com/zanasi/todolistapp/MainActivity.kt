@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
     private lateinit var database: DatabaseReference
 
     // il contenitore dei dati
-    var toDOList: MutableList<ToDoModel>? = null
+    var toDOList: MutableList<ToDoModel> = mutableListOf()
     lateinit var toDoModelList: ToDoModelList
 
     // adatta un item/data ad essere un item/view
@@ -38,11 +38,13 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
         super.onCreate(savedInstanceState)
 
         // get di un riferimento a un'istanza di FireBase
-        // e, con questa, set della variabile globale "database" (= visibile da tutte le activities)
+        // e, con questa, set della variabile globale "database"
+        // (= visibile da tutte le activities)
         // dichiarata in MyApplication
         (this.application as MyApplication).database = FirebaseDatabase.getInstance().reference
         database = (this.application as MyApplication).database!!
 
+        // set del layout associato
         setContentView(R.layout.activity_main)
 
         // set della barra in cima all'activity
@@ -58,7 +60,7 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
         // un elenco di elementi scorrevoli verticalmente.
         // Gli elementi dell'elenco vengono inseriti automaticamente
         // nell'elenco utilizzando un adapter,
-        // e ogni elemento viene convertito in una riga in ListView.
+        // e ogni elemento viene convertito in una "riga" in ListView.
 
         listViewItem = findViewById(R.id.item_listView)
 
@@ -72,19 +74,21 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
             startActivity(intent)
         }
 
-        toDOList = mutableListOf()
-        adapter = ToDoAdapter(this, toDOList!!)
-        toDoModelList = ToDoModelList(toDOList, adapter)
-
-
+        // l'adapter fa il lavoro di adattare un item della toDOList
+        // dentro la listViewItem
+        adapter = ToDoAdapter(this, toDOList)
         listViewItem!!.adapter = adapter
+        toDoModelList = ToDoModelList(toDOList)
+
+        // se un item viene aggiunto al db allora la lista
+        // viene aggiornata : addItemToList
+        // e ripulita degli item "done"
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 toDoModelList.get()!!.clear()
                 addItemToList(snapshot)
                 clearList()
             }
-
             override fun onCancelled(error: DatabaseError) {
                 Toast.makeText(applicationContext, getString(R.string.noItemAdd), Toast.LENGTH_LONG)
                     .show()
@@ -143,7 +147,7 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
                 val toDoItemData = ToDoModel.creaToDoItem()
                 val map = currentItem.value as HashMap<*, *>
                 toDoItemData.UID = currentItem.key
-                toDoItemData.done = map["done"] as Boolean?
+                toDoItemData.done = map["done"] as Boolean
                 toDoItemData.itemDataText = map["itemDataText"] as String?
                 toDoModelList.get()!!.add(toDoItemData)
             }
@@ -165,7 +169,7 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
                             }
                         }
                         toDoModelList.listItems!!.sort()
-                        toDoModelList.adapter!!.notifyDataSetChanged()
+                        adapter!!.notifyDataSetChanged()
                     }
                 }
             }
