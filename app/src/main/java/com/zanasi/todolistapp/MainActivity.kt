@@ -157,6 +157,29 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
     }
 
     fun clearList() {
+        // la pulizia degli Items (data) viene fatta in un thread separato.
+        // Poiche si deve operare su la List View definita nel main (UI) Thread,
+        // questo viene fatto in runOnUiThread.
+        // Il thread viene definito in due modi
+        // 1: con la funzione thread
+        thread {
+            synchronized(this) {
+                Thread.sleep(2000)
+                runOnUiThread {
+                    for (item in toDoModelList.listItems!!) {
+                        if (item.done == true) {
+                            val itemReference = database.child("todo").child(item.UID!!)
+                            itemReference.removeValue()
+                        }
+                    }
+                    toDoModelList.listItems!!.sort()
+                    adapter.notifyDataSetChanged()
+                }
+            }
+        }
+        // 2: con una sub-class di Thread che definisce un object singleton
+        // che implementa in metodo run()
+        /*
         val thread = object : Thread() {
             override fun run() {
                 synchronized(this) {
@@ -169,38 +192,54 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
                             }
                         }
                         toDoModelList.listItems!!.sort()
-                        adapter!!.notifyDataSetChanged()
+                        adapter.notifyDataSetChanged()
                     }
                 }
             }
         }
         thread.start()
+
+         */
     }
 
+    // implementazione del metodo modifyItem, in quanto la classe
+    // MainActivity implementa l'interfaccia UpdateAndDelete
     override fun modifyItem(itemUID: String, isDone: Boolean) {
+        // si ottiene dal database un ref ai dati di un solo item
+        // a partire dall'ID univoco "itemUID"
+        // Attenzione!! : senza Listener
         val itemReference = database.child("todo").child(itemUID)
         itemReference.child("done").setValue(isDone)
     }
 
-
+    // implementazione del metodo modifyItem, in quanto la classe
+    // MainActivity implementa l'interfaccia UpdateAndDelete
     override fun onItemDelete(itemUID: String) {
         val itemReference = database.child("todo").child(itemUID)
         itemReference.removeValue()
         adapter.notifyDataSetChanged()
     }
 
+    // implementazione del metodo modifyItem, in quanto la classe
+    // MainActivity implementa l'interfaccia UpdateAndDelete
     override fun onItemInfo(itemUID: String) {
+        // chiedo l'item ad DB usando l'ID univoco itemID
+
         database.child("todo").child(itemUID).get()
             .addOnSuccessListener {
+                // quando e se l'ho ricevuto in "it"
+                // map dei valori di it in un Bundle
                 Log.i("firebase", "Ricevuto valore ${it.child("itemDataText")}")
                 val data: Map<String, String> = it.getValue() as HashMap<String, String>
                 val bundle = Bundle()
                 for (key in data.keys) {
                     bundle.putSerializable(key, data.get(key))
                 }
-
+                // istanza dell'intent esplicita verso l'activity ItemInfo
                 val intent = Intent(this, ItemInfo::class.java)
+                // aggingo all'inten il bundle
                 intent.putExtras(bundle)
+                // attivo l'activity di info
                 startActivity(intent)
             }
             .addOnFailureListener {
@@ -209,7 +248,8 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
     }
 }
 
-
+// definizione di un job schedulato in background ... fatto solo a scopo di esercizio
+// una sua istanza viene schedulata sopra nella onCreate dell'activity
 class JobSchedulato : JobService() {
     override fun onStopJob(p0: JobParameters?): Boolean {
         Toast.makeText(applicationContext, "Job Cancelled ", Toast.LENGTH_SHORT).show()
