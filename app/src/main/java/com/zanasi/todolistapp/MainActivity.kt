@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
     private lateinit var database: DatabaseReference
 
     // il contenitore dei dati
-    var toDOList: MutableList<ToDoModel> = mutableListOf()
+    private var toDOList: MutableList<ToDoModel> = mutableListOf()
     lateinit var toDoModelList: ToDoModelList
 
     // adatta un item/data ad essere un item/view
@@ -124,7 +124,7 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
                 builder.setTitle(getString(R.string.info))
                 builder.setMessage(R.string.app_name)
 
-                builder.setPositiveButton(R.string.ok) { dialog, which ->
+                builder.setPositiveButton(R.string.ok) { _, _ ->
                     Toast.makeText(
                         applicationContext,
                         R.string.ok, Toast.LENGTH_SHORT
@@ -167,7 +167,7 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
                 Thread.sleep(2000)
                 runOnUiThread {
                     for (item in toDoModelList.listItems!!) {
-                        if (item.done == true) {
+                        if (item.done) {
                             val itemReference = database.child("todo").child(item.UID!!)
                             itemReference.removeValue()
                         }
@@ -230,10 +230,11 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
                 // quando e se l'ho ricevuto in "it"
                 // map dei valori di it in un Bundle
                 Log.i("firebase", "Ricevuto valore ${it.child("itemDataText")}")
-                val data: Map<String, String> = it.getValue() as HashMap<String, String>
+                @Suppress("UNCHECKED_CAST")
+                val data: Map<String, String> = it.value as Map<String, String>
                 val bundle = Bundle()
                 for (key in data.keys) {
-                    bundle.putSerializable(key, data.get(key))
+                    bundle.putSerializable(key, data[key])
                 }
                 // istanza dell'intent esplicita verso l'activity ItemInfo
                 val intent = Intent(this, ItemInfo::class.java)
