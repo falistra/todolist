@@ -55,18 +55,9 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
         actionBar.setDisplayUseLogoEnabled(true)
         actionBar.setDisplayShowHomeEnabled(true)
 
-        // la ListView che contiene la lista degli Item
-        // ListView è un ViewGroup che visualizza
-        // un elenco di elementi scorrevoli verticalmente.
-        // Gli elementi dell'elenco vengono inseriti automaticamente
-        // nell'elenco utilizzando un adapter,
-        // e ogni elemento viene convertito in una "riga" in ListView.
-
-        listViewItem = findViewById(R.id.item_listView)
-
-        // connessione al database Firebase
-
+        // ==================================================================
         // il bottone per aggiungere un item
+        //
         val addBtn: Button = findViewById(R.id.addItem)
         // al click del bottone si passa all'activity ItemInsert
         addBtn.setOnClickListener {
@@ -74,6 +65,15 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
             startActivity(intent)
         }
 
+
+        // ==================================================================
+        // la ListView che contiene la lista degli Items
+        // ListView è un ViewGroup che visualizza
+        // un elenco di elementi scorrevoli verticalmente.
+        // Gli elementi dell'elenco vengono inseriti automaticamente
+        // nell'elenco utilizzando un adapter,
+        // e ogni elemento viene convertito in una "riga" in ListView.
+        listViewItem = findViewById(R.id.item_listView)
         // l'adapter fa il lavoro di adattare un item della toDOList
         // dentro la listViewItem
         adapter = ToDoAdapter(this, toDOList)
@@ -95,6 +95,7 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
             }
         })
 
+        // ==========================================================================
         // schedulazione di un job
         val component = ComponentName(this, JobSchedulato::class.java)
         val jobInfo = JobInfo.Builder(1, component)
@@ -202,6 +203,7 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
          */
     }
 
+    // ====== metodi dell'interfaccia ==========================
     // implementazione del metodo modifyItem, in quanto la classe
     // MainActivity implementa l'interfaccia UpdateAndDelete
     override fun modifyItem(itemUID: String, isDone: Boolean) {
@@ -263,4 +265,3 @@ class JobSchedulato : JobService() {
         return false
     }
 }
-
