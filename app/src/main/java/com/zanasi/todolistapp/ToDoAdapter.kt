@@ -1,7 +1,6 @@
 package com.zanasi.todolistapp
 
 import android.content.Context
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,15 +9,14 @@ import android.widget.*
 
 // classe che estende BaseAdapter
 // serve in MainActivity per "adattare" la "struttura dati" toDoList MutableList<ToDoModel>
-// in una lista di View che verranno inserite lenna ListView
+// in una lista di View che verranno inserite nella ListView
 
 // BaseAdapter e' astratta e e' richiesta l'implementazione dei seguenti metodi
 
-// int getCount() -> la dimensione di toDoList
-// Object getItem(int position) -> indexing di toDoList
-// long getItemId(int position) -> cast da int a long
-
-// View getView(int position, View convertView, ViewGroup parent) ->
+//1: int getCount() --implementata-come-> la dimensione di toDoList
+//2: Object getItem(int position) --implementata-come-> indexing di toDoList
+//3: long getItemId(int position) --implementata-come-> cast da int a long
+//4: View getView(int position, View convertView, ViewGroup parent) --implementata-come->
 // metodo che fa il grosso del lavoro per popolare con i dati  una View
 // a partire da R.layout.row_itemslayout
 // Inoltre definisce i Listeners come chiamate a metodi
@@ -29,7 +27,6 @@ import android.widget.*
 
 class ToDoAdapter (context: Context, toDoList:MutableList<ToDoModel>) : BaseAdapter() {
     private val inflater : LayoutInflater = LayoutInflater.from(context)
-
 
     // la struttura che contiene i dati
     private var itemList = toDoList
@@ -53,15 +50,15 @@ class ToDoAdapter (context: Context, toDoList:MutableList<ToDoModel>) : BaseAdap
 
     // essenzialmente restituisce (se convertView == null) una view da
     // view = inflater.inflate(R.layout.row_itemslayout,parent,false)
+    // XML --inflate--> view-object
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val UID : String = itemList[position].UID as String
         val itemTextData = itemList[position].itemDataText as String
-        val done : Boolean = itemList[position].done as Boolean
-
+        val done : Boolean = itemList[position].done
         val view : View
-        // usa la classe accessoria (private) ListViewHolder definita sotto
-        // e' solo una scelta di comodita' e chiarezza
+        // Usa la classe accessoria (private) ListViewHolder definita sotto.
+        // E' solo una scelta di comodita' e chiarezza
         val viewHolder : ListViewHolder
 
         if (convertView == null) {

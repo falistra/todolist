@@ -1,10 +1,5 @@
 package com.zanasi.todolistapp
 
-import android.app.job.JobParameters
-import android.app.job.JobService
-import android.service.autofill.Validators.and
-import android.util.Log
-import android.widget.Toast
 
 class ToDoModel : Comparable<ToDoModel> {
     companion object Factory {
@@ -15,10 +10,6 @@ class ToDoModel : Comparable<ToDoModel> {
     var itemDataText: String? = null
     var itemTime: String? = null
     var itemDate: String? = null
-
-    // var itemWhoText: String? = null
-    // var itemWhyText: String? = null
-    // var itemWhereText: String? = null
     var done: Boolean = false
 
     override fun compareTo(other: ToDoModel): Int {

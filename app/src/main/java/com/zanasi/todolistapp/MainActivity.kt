@@ -173,7 +173,7 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
                             itemReference.removeValue()
                         }
                     }
-                    toDoModelList.listItems!!.sort()
+                    toDoModelList.sort()
                     adapter.notifyDataSetChanged()
                 }
             }

@@ -13,6 +13,8 @@
     <string name="noWhatIns">No text inserted</string>
     <string name="ok">OK</string>
 
+    <string name="hourText"> %1$s %2$s</string>
+
 
 
     <string name="info">Info</string>
