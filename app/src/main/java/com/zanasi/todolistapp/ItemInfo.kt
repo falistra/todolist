@@ -16,5 +16,9 @@ class ItemInfo : AppCompatActivity() {
 
         val infoQuando: TextView = findViewById(R.id.infoQuandoTextView)
         infoQuando.text = extras?.getString("itemDate").toString()
+
+        val infoTime: TextView = findViewById(R.id.infoTimeTextView)
+        infoTime.text = extras?.getString("itemTime").toString()
+
     }
 }

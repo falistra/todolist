@@ -12,7 +12,8 @@ import java.util.*
 
 
 // due classi accessorie usate in ItemInsert
-
+// 1) SetTime
+// 2) SetDate
 
 class SetTime(private var textView: TextView) : DialogFragment(), TimePickerDialog.OnTimeSetListener {
 
@@ -24,7 +25,8 @@ class SetTime(private var textView: TextView) : DialogFragment(), TimePickerDial
     }
 
     override fun onTimeSet(view: TimePicker, hourOfDay: Int, minute: Int) {
-        textView.text = "$hourOfDay:$minute"
+        val text = getString(R.string.hourText, hourOfDay.toString(), String.format("%02d", minute))
+        textView.text = text
     }
 }
 
@@ -40,6 +42,7 @@ class SetDate(private var textView: TextView) : DialogFragment(), DatePickerDial
     }
 
     override fun onDateSet(view: DatePicker, year: Int, month: Int, day: Int) {
-        textView.text = "$day/$month/$year"
+        val text = getString(R.string.dateText, day.toString(), month.toString(),year.toString())
+        textView.text = text
     }
 }

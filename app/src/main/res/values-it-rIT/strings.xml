@@ -52,5 +52,7 @@
     <string name="sortEnded">Job backgroud stopped</string>
 
     <string name="hourText"> %1$s %2$s</string>
+    <string name="dateText"> %1$s/%2$s/%3$s</string>
+
 
 </resources>
