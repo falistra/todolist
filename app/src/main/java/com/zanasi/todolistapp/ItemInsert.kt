@@ -51,17 +51,6 @@ class ItemInsert : AppCompatActivity() {
                 todoItemData.itemTime = quandoTime.text.toString()
                 todoItemData.itemDate = quandoData.text.toString()
 
-                // eventuali altri dati , legati al singolo item
-/*
-            val who : EditText = findViewById(R.id.editText_who)
-            todoItemData.itemWhoText = who.text.toString()
-
-            val why : EditText = findViewById(R.id.editText_why)
-            todoItemData.itemWhyText = why.text.toString()
-
-            val where : EditText = findViewById(R.id.editText_where)
-            todoItemData.itemWhereText = where.text.toString()
-*/
                 val newItemData = database.child("todo").push()
                 todoItemData.UID = newItemData.key
                 newItemData.setValue(todoItemData)
@@ -70,9 +59,4 @@ class ItemInsert : AppCompatActivity() {
         }
     }
 
-/*
-    bottoneAdd.setOnClickListener {
-        finishActivity(0)
-    }
-*/
 }

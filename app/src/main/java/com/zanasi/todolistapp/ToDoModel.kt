@@ -34,7 +34,7 @@ class ToDoModelList() {
     }
 
     fun sort() {
-        listItems!!.sort()
+        listItems?.sort()
     }
 
 

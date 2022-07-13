@@ -49,11 +49,13 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
 
         // set della barra in cima all'activity
         val actionBar = supportActionBar
-        actionBar!!.title = getString(R.string.app_name)
-        // actionBar.subtitle = "   sottotitolo"
-        actionBar.setIcon(R.drawable.app_logo_foreground)
-        actionBar.setDisplayUseLogoEnabled(true)
-        actionBar.setDisplayShowHomeEnabled(true)
+        if (actionBar != null) {
+            actionBar.title = getString(R.string.app_name)
+            // actionBar.subtitle = "   sottotitolo"
+            actionBar.setIcon(R.drawable.app_logo_foreground)
+            actionBar.setDisplayUseLogoEnabled(true)
+            actionBar.setDisplayShowHomeEnabled(true)
+        }
 
         // ==================================================================
         // il bottone per aggiungere un item
@@ -85,9 +87,9 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
         // e ripulita degli item "done"
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                toDoModelList.get()!!.clear()
-                addItemToList(snapshot)
-                clearList()
+                toDoModelList.get()?.clear()
+                addItemToList(snapshot) // vedi sotto
+                clearList() // thread
             }
             override fun onCancelled(error: DatabaseError) {
                 Toast.makeText(applicationContext, getString(R.string.noItemAdd), Toast.LENGTH_LONG)
